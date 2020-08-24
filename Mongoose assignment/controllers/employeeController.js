@@ -60,15 +60,13 @@ function updateRecord(req, res) {
 
 router.get('/list', (req, res) => {
     Employee.find((err, docs) => {
-        if (!err) {
+       
             res.render("employee/list", {
                 list: docs
             });
-        }
-        else {
-            console.log('Error in retrieving employee list :' + err);
-        }
-    });
+   
+    })
+    .lean()
 });
 
 
@@ -95,7 +93,8 @@ router.get('/:id', (req, res) => {
                 employee: doc
             });
         }
-    });
+    })
+    .lean()
 });
 
 router.get('/delete/:id', (req, res) => {
